@@ -1,5 +1,6 @@
 package com.esprit.examen.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -59,7 +60,7 @@ public class FactureServiceImpl implements IFactureService {
 		float montantRemise = 0;
 		for (DetailFacture detail : detailsFacture) {
 			//Récuperer le produit 
-			Produit produit = produitRepository.findById(detail.getProduit().getIdProduit()).get();
+			Produit produit = produitRepository.findById(detail.getProduit().getIdProduit()).orElse(new Produit());
 			//Calculer le montant total pour chaque détail Facture
 			float prixTotalDetail = detail.getQteCommandee() * produit.getPrix();
 			//Calculer le montant remise pour chaque détail Facture
@@ -100,7 +101,7 @@ public class FactureServiceImpl implements IFactureService {
 	@Override
 	public List<Facture> getFacturesByFournisseur(Long idFournisseur) {
 		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(null);
-		return (List<Facture>) fournisseur.getFactures();
+		return fournisseur.getFactures() != null ? (List<Facture>) fournisseur.getFactures() : new ArrayList<Facture>();
 	}
 
 	@Override
