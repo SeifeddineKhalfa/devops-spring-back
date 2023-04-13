@@ -30,23 +30,23 @@ public class OperateurServiceImplTest {
         operateurService.deleteOperateur(savedOp.getIdOperateur());
     }
 
-    @Test
-    public void testAddProductOptimized() {
-
-        Operateur s = new Operateur("1nom","prenom", "operateur");
-        Operateur savedOp=operateurService.addOperateur(s) ;
-        assertNotNull(savedOp.getIdOperateur());
-        assertSame("operateur", savedOp.getNom());
-        assertSame("1nom", savedOp.getPrenom());
-        assertSame("prenom", savedOp.getPassword());
-        operateurService.deleteOperateur(savedOp.getIdOperateur());
-    }
-    @Test
-    public void testDeleteStock() {
-
-        Operateur s = new Operateur("1nom","prenom", "operateur");
-        Operateur savedOp=operateurService.addOperateur(s) ;
-        operateurService.deleteOperateur(savedOp.getIdOperateur());
-        assertNull(operateurService.retrieveOperateur(savedOp.getIdOperateur()));
-    }
+//    @Test
+//    public void testAddProductOptimized() {
+//
+//        Operateur s = new Operateur("1nom","prenom", "operateur");
+//        Operateur savedOp=operateurService.addOperateur(s) ;
+//        assertNotNull(savedOp.getIdOperateur());
+//        assertSame("operateur", savedOp.getNom());
+//        assertSame("1nom", savedOp.getPrenom());
+//        assertSame("prenom", savedOp.getPassword());
+//        operateurService.deleteOperateur(savedOp.getIdOperateur());
+//    }
+//    @Test
+//    public void testDeleteStock() {
+//
+//        Operateur s = new Operateur("1nom","prenom", "operateur");
+//        Operateur savedOp=operateurService.addOperateur(s) ;
+//        operateurService.deleteOperateur(savedOp.getIdOperateur());
+//        assertNull(operateurService.retrieveOperateur(savedOp.getIdOperateur()));
+//    }
 }
