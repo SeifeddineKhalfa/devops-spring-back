@@ -30,8 +30,8 @@ public class FactureServiceImpTest {
     public void TestretrieveAllFactures()
     {
         List<Facture> ListFactures=new ArrayList<>();
-        ListFactures.add(new Facture(4.5, 200, new Date(), new Date(), true, null, null));
-        ListFactures.add(new Facture(7, 3000, new Date(), new Date(), false, null, null));
+        ListFactures.add(new Facture());
+        ListFactures.add(new Facture());
         factureService.retrieveAllFactures();
     }
 
@@ -50,7 +50,7 @@ public class FactureServiceImpTest {
     @Test
     public void TestretrieveFactureById()
     {
-        Facture fact=new Facture(10, 10000, new Date(), new Date(), true, null, null);
+        Facture fact=new Facture();
         factureService.retrieveFacture(1L);
     }
 
