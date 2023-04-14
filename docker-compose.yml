@@ -13,6 +13,6 @@ services:
     container_name: tpachat
     restart: on-failure
     ports:
-      - 9092:9092
+      - 9099:9099
     depends_on:
       - ichrakcontainer
