@@ -1,4 +1,4 @@
 FROM openjdk:11
-MAINTAINER ala.nabli@esprit.tn
-COPY target/tpAchatProject-1.0.jar tpAchatProject-1.0.jar
-ENTRYPOINT ["java","-jar","/tpAchatProject-1.0.jar"]
+ADD target/tpAchatProject-1.0.jar  tpAchatProject-1.0.jar
+EXPOSE 8088
+ENTRYPOINT ["java","-jar","tpAchatProject-1.0.jar"]
