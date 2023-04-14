@@ -1,4 +1,16 @@
+#FROM openjdk:11
+#ARG JAR_FILE=target/*.jar
+#ADD ${JAR_FILE} app.jar
+#ENTRYPOINT ["java","-jar","/app.jar"]
+
+#
+# Utiliser une image de base, par exemple l'image officielle de Java
 FROM openjdk:11
-ARG JAR_FILE=target/*.jar
-ADD ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+# Définir le répertoire de travail dans le conteneur
+WORKDIR /app
+# Copier le fichier JAR de l'application Spring dans le conteneur
+COPY target/*.jar .
+# Exposer le port sur lequel l'application Spring sera en écoute
+EXPOSE 5000
+# Démarrer l'application Spring
+CMD ["java", "-jar", "tpachatproject.jar"]
