@@ -48,7 +48,7 @@ pipeline {
                                nexusUrl: "192.168.1.10:8081",
                                groupId: pom.groupId,
                                version: pom.version,
-                               repository: "maven-releases",
+                               repository: "maven-snapshots",
                                credentialsId: "nexus-pass",
                                artifacts: [
                                    [artifactId: pom.artifactId,
