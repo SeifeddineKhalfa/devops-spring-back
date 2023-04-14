@@ -13,4 +13,4 @@ COPY target/*.jar .
 # Exposer le port sur lequel l'application Spring sera en écoute
 EXPOSE 5000
 # Démarrer l'application Spring
-CMD ["java", "-jar", "tpachatproject.jar"]
+CMD ["java", "-jar", "tpachatproject.jar", "tpAchatProject-1.0.jar"]
