@@ -74,6 +74,13 @@
             <scope>runtime</scope>
         </dependency>
     </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>devops</id>
+            <name>Nexus repository</name>
+            <url>http://192.168.1.10:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>
