@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+         DOCKERHUB_CREDENTIALS = credentials('docker-pass')
+     }
     stages {
         stage('Git Checkout') {
             steps {
@@ -63,6 +66,34 @@ pipeline {
                    }
                }
            }
+           stage('Docker build') {
+                agent any
+                steps {
+                  sh 'echo "Docker is building ...."'
+                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/backendBuild .'
+                }
+           }
+           stage('Docker login') {
+            agent any
+            steps {
+              sh 'echo "login Docker ...."'
+              sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
+            }
+          }
+          stage('Docker push') {
+               agent any
+               steps {
+                 sh 'echo "Docker is pushing ...."'
+                 sh 'docker push $DOCKERHUB_CREDENTIALS_USR/backendBuild'
+
+               }
+          }
+          stage('docker check containers') {
+               steps {
+
+                 sh 'docker ps'
+               }
+          }
        }
     }
 }
