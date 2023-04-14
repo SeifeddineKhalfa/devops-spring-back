@@ -78,7 +78,7 @@
         <repository>
             <id>devops</id>
             <name>Nexus repository</name>
-            <url>http://192.168.1.10:8081/repository/maven-snapshots/</url>
+            <url>http://192.168.1.10:8081/repository/devops/</url>
         </repository>
     </distributionManagement>
     <build>
