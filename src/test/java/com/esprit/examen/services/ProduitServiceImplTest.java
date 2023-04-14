@@ -110,15 +110,82 @@ public class ProduitServiceImplTest {
         ProduitService.deleteProduit(Produit.getIdProduit());
 
     }
-//    @Test
-//    public void testDeleteProduit() throws ParseException {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-//        Date dateNaissance = dateFormat.parse("30/09/2000");
-//        Produit c = new Produit();
-//        Produit Produit = ProduitService.addProduit(c);
-//        ProduitService.deleteProduit(Produit.getIdProduit());
-//        assertNull(ProduitService.retrieveProduit(Produit.getIdProduit()));
-//    }
+    @Test
+    public void testDeleteProduit() {
+        Date dateFormat = new Date("dd/MM/yyyy");
+        Stock stock = new Stock();
+        CategorieProduit categorieProduit = new CategorieProduit();
+        Set<DetailFacture> detailFactures = new Set<DetailFacture>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                return false;
+            }
+
+            @Override
+            public Iterator<DetailFacture> iterator() {
+                return null;
+            }
+
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @Override
+            public <T> T[] toArray(T[] a) {
+                return null;
+            }
+
+            @Override
+            public boolean add(DetailFacture detailFacture) {
+                return false;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(Collection<? extends DetailFacture> c) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+        };
+        Produit p = new Produit(null, "code", "libelleProduit", 3, dateFormat, dateFormat, stock, detailFactures, categorieProduit );
+        Produit Produit = ProduitService.addProduit(p);
+        ProduitService.deleteProduit(Produit.getIdProduit());
+        assertNull(ProduitService.retrieveProduit(Produit.getIdProduit()));
+    }
 
 
 
