@@ -16,6 +16,8 @@
     <properties>
         <java.version>1.8</java.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+        <nexus.username>admin</nexus.username>
+        <nexus.password>admin</nexus.password>
     </properties>
     <dependencies>
         <dependency>
@@ -117,10 +119,27 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>nexus-deploy</id>
+            <properties>
+                <nexus.username>${nexus.username}</nexus.username>
+                <nexus.password>${nexus.password}</nexus.password>
+            </properties>
+        </profile>
+    </profiles>
     <distributionManagement>
         <repository>
             <id>nexus</id>
-            <url>http://192.168.1.10:8081/repository/maven-snapshots/</url>
+            <url>http://192.168.1.10:8081/nexus/repository/maven-releases/</url>
+            <uniqueVersion>false</uniqueVersion>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </distributionManagement>
 </project>

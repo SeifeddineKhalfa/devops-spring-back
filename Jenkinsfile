@@ -32,7 +32,7 @@ pipeline {
         stage('Deploy to Nexus') {
             steps {
                 script{
-                    sh 'mvn deploy '
+                    sh 'mvn deploy -P nexus-deploy'
                 }
             }
         }
