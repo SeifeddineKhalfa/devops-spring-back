@@ -25,7 +25,7 @@ pipeline {
         stage('Static code analysis') {
             steps {
                 script {
-                   sh """mvn sonar:sonar -Dsonar.login=7bb01cbc55931099ddde64740c8c61884a36fed9"""
+                   sh """mvn clean package sonar:sonar -Dsonar.login=7bb01cbc55931099ddde64740c8c61884a36fed9"""
                 }
             }
         }
