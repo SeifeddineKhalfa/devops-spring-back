@@ -117,19 +117,4 @@
             </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>nexus-deploy</id>
-            <properties>
-                <nexus.username>admin</nexus.username>
-                <nexus.password>admin</nexus.password>
-            </properties>
-        </profile>
-    </profiles>
-    <distributionManagement>
-        <repository>
-            <id>nexus</id>
-            <url>http://192.168.1.10:8081/repository/maven-releases/</url>
-        </repository>
-    </distributionManagement>
 </project>
