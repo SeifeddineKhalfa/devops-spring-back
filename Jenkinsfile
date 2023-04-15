@@ -32,7 +32,7 @@ pipeline {
                 }
             }
         }
-        stage("Publish to Nexus Repository Manager") {
+        stage("Publish to Nexus") {
                steps {
                    script {
                        pom = readMavenPom file: "pom.xml";
@@ -67,8 +67,7 @@ pipeline {
                    }
                }
            }
-           stage('Docker build') {
-                agent any
+           stage('Creating image') {
                 steps {
                   sh 'echo "Docker is building ...."'
                     sh 'docker build . -t $DOCKERHUB_CREDENTIALS_USR/backendbuild'
