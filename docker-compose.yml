@@ -1,0 +1,18 @@
+version: '3'
+services:
+  db:
+    container_name: db
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: 0000
+    volumes:
+      - /home/mysql/data:/var/lib/mysql
+  spring_app:
+    image: ichrakbasti/tpachatproject
+    container_name: tpachatproject
+    restart: on-failure
+    ports:
+      - 9099:9099
+    depends_on:
+      - db
