@@ -12,7 +12,6 @@ services:
     volumes:
       - db:/var/lib/mysql
   backend:
-    container_name: backendbuild
     image: alanabli/backendbuild:latest
     depends_on:
       - mysql
