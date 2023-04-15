@@ -100,22 +100,80 @@ public class CategorieProduitServiceTest {
 
     }
 
-//    @Test
-//    public void testAddProductOptimized() {
-//
-//        CategorieProduit s = new CategorieProduit("cat1","1test");
-//        CategorieProduit savedCat=categorieService.addCategorieProduit(s) ;
-//        assertNotNull(savedCat.getSerialversionuid());
-//        assertSame("cat1", savedCat.getCodeCategorie());
-//        assertSame("1test", savedCat.getLibelleCategorie());
-//
-//    }
-//    @Test
-//    public void testDeleteStock() {
-//
-//        CategorieProduit s = new CategorieProduit("cat1 ","1test");
-//        CategorieProduit savedCat=categorieService.addCategorieProduit(s) ;
-//        categorieService.deleteCategorieProduit(savedCat.getSerialversionuid());
-//        assertNull(categorieService.retrieveCategorieProduit(savedCat.getSerialversionuid()));
-//    }
+
+
+    @Test
+    public void testDeleteCategorieProduit() {
+
+        Set<Produit> produits = new Set<Produit>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                return false;
+            }
+
+            @Override
+            public Iterator<Produit> iterator() {
+                return null;
+            }
+
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @Override
+            public <T> T[] toArray(T[] a) {
+                return null;
+            }
+
+            @Override
+            public boolean add(Produit produit) {
+                return false;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(Collection<? extends Produit> c) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+        };
+        CategorieProduit s = new CategorieProduit(null, "cat1", "test", produits);
+        CategorieProduit savedCat=categorieService.addCategorieProduit(s) ;
+        categorieService.deleteCategorieProduit(savedCat.getIdCategorieProduit());
+        assertNull(categorieService.retrieveCategorieProduit(savedCat.getIdCategorieProduit()));
+    }
 }
