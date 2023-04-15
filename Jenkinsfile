@@ -71,7 +71,7 @@ pipeline {
                 agent any
                 steps {
                   sh 'echo "Docker is building ...."'
-                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/backendbuild .'
+                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/backendbuild . < Dockerfile'
                 }
            }
            stage('Docker login') {
