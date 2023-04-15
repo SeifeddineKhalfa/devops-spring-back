@@ -22,8 +22,6 @@ public class ProduitServiceTestMockito {
 
     @Mock
     ProduitRepository prodRepository;
-    @InjectMocks
-    ProduitServiceImpl prodService;
 
     @Test
     public void testUpdateProduit()
@@ -109,50 +107,5 @@ public class ProduitServiceTestMockito {
 
 
     }
-//    @Test
-//    public void testRetrieveStockById()
-//    {
-//        Produit produit=new Produit("produit test",100);
-//
-//        Mockito.when(prodRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(produit));
-//        assertNotNull(prodService.retrieveProduit(1L));
-//    }
-//
-//    @Test
-//    public void testRetrieveAllStocks()
-//    {
-//        Produit produit1=new Produit("produit test",100);
-//        Produit produit2=new Produit("produit test",100);
-//        Produit produit3=new Produit("produit test",100);
-//        List<Produit> prods= new ArrayList<Produit>();
-//        prods.add(produit1);
-//        prods.add(produit2);
-//        prods.add(produit3);
-//        Mockito.when(prodRepository.findAll()).thenReturn(prods);
-//        assertNotNull(prodService.retrieveAllProduits());
-//    }
-//
-//
-//
-//
-//    @Test
-//    public void testCreateStock()
-//    {
-//        Produit produit=new Produit("produit test",100);
-//        prodService.addProduit(produit);
-//
-//        Mockito.when(prodRepository.save(produit)).thenReturn(produit);
-//        assertNotNull(prodService.addProduit(produit));
-//    }
-//
-//    @Test
-//    public void deleteUserTest() {
-//        Produit produit=new Produit("produit test",100);
-//        Mockito.when(prodRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(produit));
-//        prodService.deleteProduit(produit.getIdProduit());;
-//
-//
-//    }
-
 
 }
