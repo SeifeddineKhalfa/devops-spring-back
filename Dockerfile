@@ -1,4 +1,4 @@
 FROM openjdk:11
-MAINTAINER alanabli
-COPY devops-spring-back/target/tpAchatProject-1.0.jar tpAchatProject-1.0.jar
-ENTRYPOINT ["java","-jar","/tpAchatProject-1.0.jar"]
+ARG JAR_FILE=target/*.jar
+ADD ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
