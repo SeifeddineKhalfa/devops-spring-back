@@ -9,7 +9,7 @@ services:
     volumes:
       - /home/mysql/data:/var/lib/mysql
   spring_app:
-    image: ichrakbasti/tpachatproject
+    image: seif03/tpachatproject
     container_name: tpachatproject
     restart: on-failure
     ports:
