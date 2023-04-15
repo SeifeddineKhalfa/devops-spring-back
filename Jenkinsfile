@@ -88,11 +88,6 @@ pipeline {
 
                }
           }
-          stage('Push Image'){
-              steps {
-                  sh "docker push benrebahines/backend:latest"
-              }
-          }
           stage('Starting the application'){
               steps {
                   sh "docker-compose up -d"
