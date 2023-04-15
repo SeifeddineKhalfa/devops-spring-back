@@ -11,7 +11,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - /home/mysql/data:/var/lib/mysql
-  spring_app:
+  backend:
     image: seif03/tpachatproject
     container_name: tpachatproject
     restart: on-failure
