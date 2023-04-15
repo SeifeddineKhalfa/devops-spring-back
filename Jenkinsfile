@@ -1,35 +1,68 @@
 pipeline {
-    agent any
-
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "M2_HOME"
+    environment {
+        NEXUS_URL = 'http://192.168.1.16:8081'
+        NEXUS_REPOSITORY_ID = 'deploymentRepo'
+        NEXUS_REPOSITORY_URL = 'http://192.168.1.16:8081/repository/maven-releases'
+        DOCKERHUB_CREDENTIALS = credentials('ichrakbasti')
     }
-
+    agent any
     stages {
-        stage('Testing  version') {
-         steps {
-                echo 'mvn version..';
-                sh """mvn --version"""
-             
-         }
-            
-        }
-        stage('Checkout GIT') {
+        stage('Chekout and pull branche feature/ichrak-devops '){
             steps {
-                echo 'Pulling..';
-                // Get some code from a GitHub repository
-                git branch :'master',
-                url : 'https://github.com/SeifeddineKhalfa/devops-spring-back.git'
-
-                // Run Maven on a Unix agent.
-               
-
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                echo 'Pulling .............';
+                git branch: 'feature/ichrak-devops',
+                url: 'https://github.com/SeifeddineKhalfa/devops-spring-back.git'
             }
-
-            
+        }
+        stage('Maven Clean Install'){
+            steps {
+                echo "Clean......";
+                sh """mvn clean -DskipTests""";
+            }
+        }
+        stage('Compilation') {
+            steps {
+              sh 'mvn compile'
+            }
+        }
+        stage("Test unitaire produit ") {
+            steps{
+                sh'mvn test -Ptest'
+            }
+        }
+        stage ('Sonar') {
+            steps {
+                echo "sonar.............";
+                sh 'mvn sonar:sonar -Dsonar.login=59449d768a80757e48b26ea45f603fae3b775ba6';
+            }
+        }
+        stage ('Nexus'){
+            steps {
+                echo 'Deploy..............';
+                sh "mvn deploy -DaltDeploymentRepository=${NEXUS_REPOSITORY_ID}::default::${NEXUS_REPOSITORY_URL} -s /usr/share/maven/conf/settings.xml"
+            }
+        }
+        stage('docker build'){
+            steps{
+                script{
+                    sh 'docker build -t ichrakbasti/projet .'
+                }
+            }
+        }
+        stage('Login docker hub') {
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
+            }
+        }
+        stage('docker push') {
+            steps {
+                sh 'docker push ichrakbasti/projet'
+            }
+        }
+        stage("Start Containers") {
+            steps {
+                sh 'docker-compose up -d --build'
+            }
         }
     }
 }
