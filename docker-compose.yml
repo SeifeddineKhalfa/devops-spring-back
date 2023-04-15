@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=tpAchatProject
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+  backend:
+    container_name: backendbuild
+    image: alanabli/backendbuild:latest
+    depends_on:
+      - mysql
+    build: .
+    restart: on-failure
+    ports:
+      - "8089:8089"
+    environment:
+      SPRING_APPLICATION_JSON: '{
+       "spring.datasource.url"  : "jdbc:mysql://mysql:3306/tpAchatProject?useSSL=false",
+       "spring.datasource.username" : "root",
+       "spring.datasource.password" : "",
+       "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+       "spring.jpa.hibernate.ddl-auto" : "update"}'
+    stdin_open: true
+    tty: true
+
+volumes:
+  db:
